@@ -2,7 +2,7 @@ from speech2text.log import LOG
 from speech2text.engines.kaldi import KaldiServerSTT
 from speech2text.engines.bing import BingSTT
 from speech2text.engines.ds import DeepSpeechServerSTT, \
-    DeepSpeechStreamServerSTT
+    DeepSpeechStreamServerSTT, DeepSpeechSTT, DeepSpeechStreamSTT
 from speech2text.engines.govivace import GoVivaceSTT
 from speech2text.engines.google import GoogleCloudStreamingSTT, \
     GoogleCloudSTT, GoogleSTT
@@ -25,6 +25,8 @@ class STTFactory:
         "houndify": HoundifySTT,
         "deepspeech_server": DeepSpeechServerSTT,
         "deepspeech_stream_server": DeepSpeechStreamServerSTT,
+        "deepspeech": DeepSpeechSTT,
+        "deepspeech_streaming": DeepSpeechStreamSTT,
         "yandex": YandexSTT
     }
 

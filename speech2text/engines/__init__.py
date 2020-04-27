@@ -88,6 +88,13 @@ class StreamThread(Thread, metaclass=ABCMeta):
     def handle_audio_stream(self, audio, language):
         pass
 
+    def finalize(self):
+        """
+        Engines can perform final operations before stream closes here
+        usually modify self.text
+        """
+        pass
+
 
 class StreamingSTT(STT, metaclass=ABCMeta):
     """
@@ -111,6 +118,7 @@ class StreamingSTT(STT, metaclass=ABCMeta):
     def stream_stop(self):
         if self.stream is not None:
             self.queue.put(None)
+            self.stream.finalize()
             self.stream.join()
 
             text = self.stream.text
