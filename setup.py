@@ -8,6 +8,6 @@ setup(
     install_requires=["requests", "SpeechRecognition==3.8.1"],
     license='Apache2.0',
     author='jarbasAI',
-    author_email='',
+    author_email='jarbasai@mailfence.com',
     description='Mycroft STT engine wrappers'
 )
