@@ -1,13 +1,6 @@
 from speech2text.engines import STT, TokenSTT, StreamThread, StreamingSTT
-from abc import ABCMeta
 import json
 from queue import Queue
-
-
-class GoogleJsonSTT(STT, metaclass=ABCMeta):
-    def __init__(self, config):
-        super(GoogleJsonSTT, self).__init__(config)
-        self.json_credentials = json.dumps(self.credential.get("json"))
 
 
 class GoogleSTT(TokenSTT):
@@ -16,7 +9,11 @@ class GoogleSTT(TokenSTT):
         return self.recognizer.recognize_google(audio, self.token, self.lang)
 
 
-class GoogleCloudSTT(GoogleJsonSTT):
+class GoogleCloudSTT(STT):
+    def __init__(self, config):
+        super().__init__(config)
+        self.json_credentials = json.dumps(self.credential.get("json"))
+
     def execute(self, audio, language=None):
         self.lang = language or self.lang
         return self.recognizer.recognize_google_cloud(audio,

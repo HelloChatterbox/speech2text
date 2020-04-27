@@ -26,6 +26,7 @@ current dev branch
 ### Changed
 
 - removed mycroft engines (only mycroft-core should have those)
+- remove useless GoogleJsonSTT abstract class
 
 ## [0.1.0]
 
