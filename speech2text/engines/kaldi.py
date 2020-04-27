@@ -22,14 +22,14 @@ class KaldiServerSTT(STT):
 class VoskKaldiSTT(STT):
     def __init__(self, config):
         super().__init__(config)
-        global Model, KaldiRecognizer
-        from vosk import Model, KaldiRecognizer
+        global KaldiRecognizer
+        from vosk import Model as KaldiModel, KaldiRecognizer
         model_path = self.config.get("model")
         if not model_path or not isdir(model_path):
             LOG.error("You need to provide a valid model file")
             LOG.info("download a model from https://github.com/alphacep/vosk-api/blob/master/doc/models.md")
             raise FileNotFoundError
-        self.model = Model(model_path)
+        self.model = KaldiModel(model_path)
 
     def execute(self, audio, language=None):
         kaldi = KaldiRecognizer(self.model, 16000)
