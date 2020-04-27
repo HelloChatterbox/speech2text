@@ -8,6 +8,7 @@ from queue import Queue
 
 
 class KaldiServerSTT(STT):
+    """ https://github.com/alumae/kaldi-gstreamer-server """
     def execute(self, audio, language=None):
         response = requests.post(self.config.get("uri"),
                                  data=audio.get_wav_data())
@@ -18,7 +19,7 @@ class KaldiServerSTT(STT):
             return None
 
 
-class KaldiSTT(STT):
+class VoskKaldiSTT(STT):
     def __init__(self, config):
         super().__init__(config)
         global Model, KaldiRecognizer
@@ -38,7 +39,7 @@ class KaldiSTT(STT):
         return res["text"]
 
 
-class KaldiStreamThread(StreamThread):
+class VoskKaldiStreamThread(StreamThread):
     def __init__(self, queue, lang, kaldi):
         super().__init__(queue, lang)
         self.kaldi = kaldi
@@ -58,7 +59,7 @@ class KaldiStreamThread(StreamThread):
         return self.text
 
 
-class KaldiStreamingSTT(StreamingSTT, KaldiSTT):
+class VoskKaldiStreamingSTT(StreamingSTT, VoskKaldiSTT):
 
     def __init__(self, config):
         super().__init__(config)
@@ -68,7 +69,7 @@ class KaldiStreamingSTT(StreamingSTT, KaldiSTT):
     def create_streaming_thread(self):
         self.queue = Queue()
         kaldi = KaldiRecognizer(self.model, 16000)
-        return KaldiStreamThread(
+        return VoskKaldiStreamThread(
             self.queue,
             self.lang,
             kaldi
