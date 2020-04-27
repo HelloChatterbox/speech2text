@@ -32,5 +32,7 @@ class STTFactory:
     def create(config=None, engines=None):
         engines = engines or STTFactory.CLASSES
         config = config or {"module": "google"}
-        clazz = engines.get(config["module"])
-        return clazz(config)
+        module = config["module"]
+        module_config = config.get(module, config)
+        clazz = engines.get(module)
+        return clazz(module_config)
