@@ -2,7 +2,7 @@ from speech2text.engines import StreamingSTT, StreamThread, STT
 import requests
 from queue import Queue
 from speech2text.log import LOG
-from timeit import default_timer as timer
+from os.path import isfile
 
 
 class DeepSpeechServerSTT(STT):
@@ -66,28 +66,16 @@ class DeepSpeechSTT(STT):
         import numpy as np
         model = self.config.get("model")
         scorer = self.config.get("scorer")
-        self.ds = self.load_model(model, scorer)
-
-    @staticmethod
-    def load_model(models, scorer):
-        '''
-        Load the pre-trained model into the memory
-        @param models: Output Grapgh Protocol Buffer file
-        @param scorer: Scorer file
-        @Retval
-        Returns DeepSpeech Object
-        '''
-        model_load_start = timer()
-        ds = DeepSpeechModel(models)
-        model_load_end = timer() - model_load_start
-        LOG.debug("Loaded model in %0.3fs." % (model_load_end))
-
-        scorer_load_start = timer()
-        ds.enableExternalScorer(scorer)
-        scorer_load_end = timer() - scorer_load_start
-        LOG.debug('Loaded external scorer in %0.3fs.' % (scorer_load_end))
-
-        return ds
+        if not model or not isfile(model):
+            LOG.error("You need to provide a valid model file")
+            LOG.info("download a model from https://github.com/mozilla/DeepSpeech")
+            raise FileNotFoundError
+        if not scorer or not isfile(scorer):
+            LOG.warning("You should provide a valid scorer")
+            LOG.info("download scorer from https://github.com/mozilla/DeepSpeech")
+        self.ds = DeepSpeechModel(model)
+        if scorer:
+            self.ds.enableExternalScorer(scorer)
 
     def execute(self, audio, language=None):
         audio = np.frombuffer(audio.frame_data, np.int16)
