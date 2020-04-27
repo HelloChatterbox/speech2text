@@ -19,7 +19,9 @@ current dev branch
 - local streaming deepspeech STT
 - new method for STT
     - finalize() is called before closing STT stream
-    
+- vosk Kaldi STT
+- vosk Kaldi Streaming STT
+
 ## [0.1.0]
 
 extracted mycroft.stt into a standalone package
