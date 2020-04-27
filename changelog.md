@@ -9,6 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 current dev branch
 
+## [0.2.0]
+
 ### Fixed
 
 - config loading did not respect mycroft format
@@ -33,4 +35,5 @@ current dev branch
 extracted mycroft.stt into a standalone package
 
 [unreleased]: https://github.com/JarbasAl/speech2text/tree/dev
+[0.2.0]: https://github.com/JarbasAl/speech2text/tree/0.2.0
 [0.1.0]: https://github.com/JarbasAl/speech2text/tree/0.1.0
