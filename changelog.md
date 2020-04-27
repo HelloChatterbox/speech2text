@@ -13,6 +13,13 @@ current dev branch
 
 - config loading did not respect mycroft format
 
+### Added
+
+- local deepspeech STT
+- local streaming deepspeech STT
+- new method for STT
+    - finalize() is called before closing STT stream
+    
 ## [0.1.0]
 
 extracted mycroft.stt into a standalone package
