@@ -20,8 +20,9 @@ class STTFactory:
         "wit": WITSTT,
         "ibm": IBMSTT,
         "kaldi_server": KaldiServerSTT,
-        "kaldi": KaldiSTT,
-        "kaldi_streaming": KaldiStreamingSTT,
+        "kaldi": KaldiServerSTT, # TODO remove in next release, backwards compat
+        "kaldi_vosk": KaldiSTT,
+        "kaldi_vosk_streaming": KaldiStreamingSTT,
         "bing": BingSTT,
         "govivace": GoVivaceSTT,
         "houndify": HoundifySTT,
