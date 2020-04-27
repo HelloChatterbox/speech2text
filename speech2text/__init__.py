@@ -1,5 +1,5 @@
 from speech2text.log import LOG
-from speech2text.engines.kaldi import KaldiServerSTT, KaldiSTT
+from speech2text.engines.kaldi import KaldiServerSTT, KaldiSTT, KaldiStreamingSTT
 from speech2text.engines.bing import BingSTT
 from speech2text.engines.ds import DeepSpeechServerSTT, \
     DeepSpeechStreamServerSTT, DeepSpeechSTT, DeepSpeechStreamSTT
@@ -21,6 +21,7 @@ class STTFactory:
         "ibm": IBMSTT,
         "kaldi_server": KaldiServerSTT,
         "kaldi": KaldiSTT,
+        "kaldi_streaming": KaldiStreamingSTT,
         "bing": BingSTT,
         "govivace": GoVivaceSTT,
         "houndify": HoundifySTT,

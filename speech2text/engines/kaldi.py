@@ -1,9 +1,10 @@
-from speech2text.engines import STT
+from speech2text.engines import STT, StreamThread, StreamingSTT
 import re
 from os.path import isdir
 import json
 import requests
 from speech2text.log import LOG
+from queue import Queue
 
 
 class KaldiServerSTT(STT):
@@ -35,3 +36,40 @@ class KaldiSTT(STT):
         res = kaldi.FinalResult()
         res = json.loads(res)
         return res["text"]
+
+
+class KaldiStreamThread(StreamThread):
+    def __init__(self, queue, lang, kaldi):
+        super().__init__(queue, lang)
+        self.kaldi = kaldi
+
+    def handle_audio_stream(self, audio, language):
+        for a in audio:
+            data = np.frombuffer(a, np.int16)
+            if self.kaldi.AcceptWaveform(data):
+                res = self.kaldi.Result()
+                res = json.loads(res)
+                self.text = res["text"]
+            else:
+                res = self.kaldi.PartialResult()
+                res = json.loads(res)
+                self.text = res["partial"]
+
+        return self.text
+
+
+class KaldiStreamingSTT(StreamingSTT, KaldiSTT):
+
+    def __init__(self, config):
+        super().__init__(config)
+        global np
+        import numpy as np
+
+    def create_streaming_thread(self):
+        self.queue = Queue()
+        kaldi = KaldiRecognizer(self.model, 16000)
+        return KaldiStreamThread(
+            self.queue,
+            self.lang,
+            kaldi
+        )
