@@ -22,6 +22,11 @@ current dev branch
 - vosk Kaldi STT
 - vosk Kaldi Streaming STT
 
+    
+### Changed
+
+- removed mycroft engines (only mycroft-core should have those)
+
 ## [0.1.0]
 
 extracted mycroft.stt into a standalone package
