@@ -20,6 +20,10 @@ current dev branch
 - new method for STT
     - finalize() is called before closing STT stream
     
+### Changed
+
+- removed mycroft engines (only mycroft-core should have those)
+
 ## [0.1.0]
 
 extracted mycroft.stt into a standalone package
