@@ -10,7 +10,7 @@ class GoogleSTT(TokenSTT):
 
 
 class GoogleCloudSTT(STT):
-    def __init__(self, config):
+    def __init__(self, config=None):
         super().__init__(config)
         self.json_credentials = json.dumps(self.credential.get("json"))
 
@@ -53,7 +53,7 @@ class GoogleCloudStreamingSTT(StreamingSTT):
 
     """
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         global SpeechClient, types, enums, Credentials
         from google.cloud.speech import SpeechClient, types, enums
         from google.oauth2.service_account import Credentials

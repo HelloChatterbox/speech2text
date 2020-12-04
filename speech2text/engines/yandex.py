@@ -20,7 +20,7 @@ class YandexSTT(STT):
             }
         }
     """
-    def __init__(self, config):
+    def __init__(self, config=None):
         super(YandexSTT, self).__init__(config)
         self.api_key = self.credential.get("api_key")
         if self.api_key is None:

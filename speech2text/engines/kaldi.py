@@ -20,7 +20,7 @@ class KaldiServerSTT(STT):
 
 
 class VoskKaldiSTT(STT):
-    def __init__(self, config):
+    def __init__(self, config=None):
         super().__init__(config)
         global KaldiRecognizer
         from vosk import Model as KaldiModel, KaldiRecognizer
@@ -61,7 +61,7 @@ class VoskKaldiStreamThread(StreamThread):
 
 class VoskKaldiStreamingSTT(StreamingSTT, VoskKaldiSTT):
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         super().__init__(config)
         global np
         import numpy as np

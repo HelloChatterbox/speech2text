@@ -59,7 +59,7 @@ class DeepSpeechStreamServerSTT(StreamingSTT):
 
 class DeepSpeechSTT(STT):
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         super().__init__(config)
         global DeepSpeechModel, np
         from deepspeech import Model as DeepSpeechModel

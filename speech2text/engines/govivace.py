@@ -4,7 +4,7 @@ import requests
 
 
 class GoVivaceSTT(TokenSTT):
-    def __init__(self, config):
+    def __init__(self, config=None):
         super(GoVivaceSTT, self).__init__(config)
         self.url = self.config.get(
             "uri", "https://services.govivace.com:49149/telephony")

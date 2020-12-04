@@ -20,10 +20,10 @@ from threading import Thread
 
 class STT(metaclass=ABCMeta):
     """ STT Base class, all  STT backends derives from this one. """
-    def __init__(self, config):
-        self.lang = self.init_language(config)
-        self.config = config
-        self.credential = self.config.get("credential", {})
+    def __init__(self, config=None):
+        self.config = config or {}
+        self.lang = self.init_language(self.config)
+        self.credential = self.config.get("credential") or {}
         self.recognizer = Recognizer()
         self.can_stream = False
 
@@ -41,14 +41,14 @@ class STT(metaclass=ABCMeta):
 
 
 class TokenSTT(STT, metaclass=ABCMeta):
-    def __init__(self, config):
+    def __init__(self, config=None):
         super(TokenSTT, self).__init__(config)
         self.token = self.credential.get("token")
 
 
 class BasicSTT(STT, metaclass=ABCMeta):
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         super(BasicSTT, self).__init__(config)
         self.username = str(self.credential.get("username"))
         self.password = str(self.credential.get("password"))
@@ -56,7 +56,7 @@ class BasicSTT(STT, metaclass=ABCMeta):
 
 class KeySTT(STT, metaclass=ABCMeta):
 
-    def __init__(self, config):
+    def __init__(self, config=None):
         super(KeySTT, self).__init__(config)
         self.id = str(self.credential.get("client_id"))
         self.key = str(self.credential.get("client_key"))
@@ -100,7 +100,7 @@ class StreamingSTT(STT, metaclass=ABCMeta):
     """
         ABC class for threaded streaming STT implemenations.
     """
-    def __init__(self, config):
+    def __init__(self, config=None):
         super().__init__(config)
         self.stream = None
         self.can_stream = True
