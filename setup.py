@@ -50,6 +50,7 @@ setup(
     url='https://github.com/JarbasAl/speech2text',
     install_requires=["requests",
                       "SpeechRecognition>=3.8.1",
+                      "jarbas-stt-plugin-chromium>=0.2.0",
                       "ovos_utils>=0.0.8a3"],
     license='Apache2.0',
     author='jarbasAI',

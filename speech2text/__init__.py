@@ -1,5 +1,4 @@
-from ovos_utils.log import LOG
-from speech2text.engines.kaldi import KaldiServerSTT, VoskKaldiSTT, VoskKaldiStreamingSTT
+from speech2text.engines.kaldi import KaldiServerSTT
 from speech2text.engines.bing import BingSTT
 from speech2text.engines.ds import DeepSpeechServerSTT, \
     DeepSpeechStreamServerSTT, DeepSpeechSTT, DeepSpeechStreamSTT
@@ -22,8 +21,6 @@ class STTFactory:
         "wit": WITSTT,
         "ibm": IBMSTT,
         "kaldi_server": KaldiServerSTT,
-        "kaldi_vosk": VoskKaldiSTT,
-        "kaldi_vosk_streaming": VoskKaldiStreamingSTT,
         "bing": BingSTT,
         "govivace": GoVivaceSTT,
         "houndify": HoundifySTT,

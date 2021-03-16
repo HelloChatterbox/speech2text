@@ -2,4 +2,3 @@ requests
 SpeechRecognition>=3.8.1
 ovos_utils>=0.0.8a3
 jarbas-stt-plugin-chromium>=0.2.0
-jarbas-stt-plugin-vosk>=0.2.0

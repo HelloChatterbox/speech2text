@@ -1,7 +1,6 @@
 from speech2text.engines import STT
 import re
 import requests
-from jarbas_stt_plugin_vosk import VoskKaldiSTT, VoskKaldiStreamingSTT, VoskKaldiStreamThread
 
 
 class KaldiServerSTT(STT):
