@@ -45,7 +45,7 @@ PLUGIN_ENTRY_POINT = ('chatterbox_kaldiserver_stt_plug = '
 
 setup(
     name='speech2text',
-    version='0.3.0',
+    version='0.3.0a1',
     packages=['speech2text', 'speech2text.engines'],
     url='https://github.com/JarbasAl/speech2text',
     install_requires=["requests",
