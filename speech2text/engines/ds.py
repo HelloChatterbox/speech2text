@@ -1,7 +1,7 @@
 from speech2text.engines import StreamingSTT, StreamThread, STT
 import requests
 from queue import Queue
-from speech2text.log import LOG
+from ovos_utils.log import LOG
 from os.path import isfile
 
 
@@ -59,8 +59,8 @@ class DeepSpeechStreamServerSTT(StreamingSTT):
 
 class DeepSpeechSTT(STT):
 
-    def __init__(self, config=None):
-        super().__init__(config)
+    def __init__(self):
+        super().__init__()
         global DeepSpeechModel, np
         from deepspeech import Model as DeepSpeechModel
         import numpy as np

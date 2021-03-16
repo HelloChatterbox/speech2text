@@ -20,8 +20,8 @@ class YandexSTT(STT):
             }
         }
     """
-    def __init__(self, config=None):
-        super(YandexSTT, self).__init__(config)
+    def __init__(self):
+        super(YandexSTT, self).__init__()
         self.api_key = self.credential.get("api_key")
         if self.api_key is None:
             raise ValueError("API key for Yandex STT is not defined")

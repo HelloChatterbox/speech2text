@@ -1,17 +1,11 @@
-from speech2text.engines import STT, TokenSTT, StreamThread, StreamingSTT
+from speech2text.engines import STT, StreamThread, StreamingSTT
 import json
 from queue import Queue
 
 
-class GoogleSTT(TokenSTT):
-    def execute(self, audio, language=None):
-        self.lang = language or self.lang
-        return self.recognizer.recognize_google(audio, self.token, self.lang)
-
-
 class GoogleCloudSTT(STT):
-    def __init__(self, config=None):
-        super().__init__(config)
+    def __init__(self):
+        super().__init__()
         self.json_credentials = json.dumps(self.credential.get("json"))
 
     def execute(self, audio, language=None):
@@ -53,12 +47,12 @@ class GoogleCloudStreamingSTT(StreamingSTT):
 
     """
 
-    def __init__(self, config=None):
+    def __init__(self):
         global SpeechClient, types, enums, Credentials
         from google.cloud.speech import SpeechClient, types, enums
         from google.oauth2.service_account import Credentials
 
-        super(GoogleCloudStreamingSTT, self).__init__(config)
+        super(GoogleCloudStreamingSTT, self).__init__()
         credentials = Credentials.from_service_account_info(
             self.credential.get('json')
         )

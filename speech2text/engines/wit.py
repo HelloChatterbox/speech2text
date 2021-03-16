@@ -1,5 +1,5 @@
 from speech2text.engines import TokenSTT
-from speech2text.log import LOG
+from ovos_utils.log import LOG
 
 
 class WITSTT(TokenSTT):

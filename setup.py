@@ -45,10 +45,12 @@ PLUGIN_ENTRY_POINT = ('chatterbox_kaldiserver_stt_plug = '
 
 setup(
     name='speech2text',
-    version='0.2.1',
+    version='0.3.0',
     packages=['speech2text', 'speech2text.engines'],
     url='https://github.com/JarbasAl/speech2text',
-    install_requires=["requests", "SpeechRecognition>=3.8.1"],
+    install_requires=["requests",
+                      "SpeechRecognition>=3.8.1",
+                      "ovos_utils>=0.0.8a3"],
     license='Apache2.0',
     author='jarbasAI',
     author_email='jarbasai@mailfence.com',

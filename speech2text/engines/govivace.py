@@ -1,11 +1,11 @@
 from speech2text.engines import TokenSTT
-from speech2text.log import LOG
+from ovos_utils.log import LOG
 import requests
 
 
 class GoVivaceSTT(TokenSTT):
-    def __init__(self, config=None):
-        super(GoVivaceSTT, self).__init__(config)
+    def __init__(self):
+        super(GoVivaceSTT, self).__init__()
         self.url = self.config.get(
             "uri", "https://services.govivace.com:49149/telephony")
 
