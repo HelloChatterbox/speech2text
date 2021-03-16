@@ -45,12 +45,14 @@ PLUGIN_ENTRY_POINT = ('chatterbox_kaldiserver_stt_plug = '
 
 setup(
     name='speech2text',
-    version='0.3.0a1',
+    version='0.3.0a3',
     packages=['speech2text', 'speech2text.engines'],
     url='https://github.com/JarbasAl/speech2text',
     install_requires=["requests",
                       "SpeechRecognition>=3.8.1",
                       "jarbas-stt-plugin-chromium>=0.2.0",
+                      "google-cloud-speech==1.3.2",
+                      "google-api-python-client==1.6.4",
                       "ovos_utils>=0.0.8a3"],
     license='Apache2.0',
     author='jarbasAI',

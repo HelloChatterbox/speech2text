@@ -1,6 +1,8 @@
 from speech2text.engines import STT, StreamThread, StreamingSTT
 import json
 from queue import Queue
+from google.cloud.speech import SpeechClient, types, enums
+from google.oauth2.service_account import Credentials
 
 
 class GoogleCloudSTT(STT):
@@ -48,10 +50,6 @@ class GoogleCloudStreamingSTT(StreamingSTT):
     """
 
     def __init__(self):
-        global SpeechClient, types, enums, Credentials
-        from google.cloud.speech import SpeechClient, types, enums
-        from google.oauth2.service_account import Credentials
-
         super(GoogleCloudStreamingSTT, self).__init__()
         credentials = Credentials.from_service_account_info(
             self.credential.get('json')
